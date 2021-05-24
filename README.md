@@ -1,6 +1,3 @@
-# What is this?
-An unofficial attempt to fix Kawata!osu's relax PP system. Hopefully it works and perhaps it can be implemented in kawata...
-
 # How does it work?
 I don't know, I just edit the oppai.c file because it's the only one that affects pp at all. But it theoretically should calculate the pp you get from a map based in it's .osu file.
 
