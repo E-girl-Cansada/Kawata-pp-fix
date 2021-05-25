@@ -2192,7 +2192,7 @@ int pp_std(ezpp_t ez) {
 
   if(ez->cs <= 6.0f){ // low CS nerf
 
-      CSmulti = pow(((((ez->cs)/5.0f) + 3.8f)/5.0f), 1.6f); // ((cs/5 + 4)/5)^1.3 Decreses the lower it gets
+      CSmulti = pow(((((ez->cs)/5.0f) + 3.8f)/5.0f), 1.6f); // ((cs/5 + 3.8)/5)^1.6 Decreses the lower it gets
 
     } else if(ez->cs > 6.0f){
 
