@@ -2185,30 +2185,49 @@ int pp_std(ezpp_t ez) {
   if (ez->mods & MODS_HD) ez->acc_pp *= 1.08f;
   if (ez->mods & MODS_FL) ez->acc_pp *= 1.02f;
 
-  /* total pp -------------------------------------------------------- */
-  final_multiplier = 1.12f;
-  if (ez->mods & MODS_NF) final_multiplier *= 0.90f;
-  if (ez->mods & MODS_SO) final_multiplier *= 0.95f;
-
   /* e-girl's multipliers -------------------------------------------- */
 
   // CS MULTIPLIER
   float CSmulti;
-  if(ez->mods & MODS_RX){
 
-    if(ez->cs <= 6.0f){ // low CS nerf
+  if(ez->cs <= 6.0f){ // low CS nerf
 
       CSmulti = pow(((((ez->cs)/5.0f) + 3.8f)/5.0f), 1.6f); // ((cs/5 + 4)/5)^1.3 Decreses the lower it gets
-      final_multiplier *= CSmulti;
 
-    } else if(ez->cs > 6){
+    } else if(ez->cs > 6.0f){
 
       CSmulti = pow(((((-(ez->cs))/5.0f) + 6.2f)/5.0f), 3.5f); // ((-cs/5 + 6.2)/5)^3.5 Decreases the higher it gets
-      final_multiplier *= CSmulti;
+
+  }
+
+  // FL BUFF (THIS BUFF IS NOT APPLIABLE BECAUSE OF THE DUMB FL RULE, OTHERWISE WE WOULD SEE 20K PP PLAYS. FEEL FREE TO TEST IT BY YOURSELF THO)
+  
+  /*
+  float FLmulti;
+  if(ez->mods & MODS_RX){
+
+    if(ez->mods & MODS_FL){
+
+      FLmulti = 1.1f + pow((ez->nobjects/600.0f), 1.2f); // just a very simple buff based in obj count
+      final_multiplier *= FLmulti;
 
     }
-    
+
   }
+  */ 
+
+  /* total pp -------------------------------------------------------- */
+  final_multiplier = 1.12f;
+
+    if (ez->relax == 1){
+
+    final_multiplier *= CSmulti;
+
+  }
+
+  if (ez->mods & MODS_NF) final_multiplier *= 0.90f;
+  if (ez->mods & MODS_SO) final_multiplier *= 0.95f;
+
   if(ez->relax == 1)
   {
     diff = aim_speed_difference_factor(ez->aim_pp, ez->speed_pp);
@@ -2268,7 +2287,7 @@ int pp_std(ezpp_t ez) {
         pow(ez->speed_pp, 1.1f) +	
         pow(ez->acc_pp, 1.1f),	
         1.0f / 1.1f	
-      ) * final_multiplier	
+      ) * final_multiplier
     );
   } else {
     default_relax_autopilot(ez->pp,
