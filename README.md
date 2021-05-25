@@ -9,10 +9,8 @@ I don't know, I just edit the oppai.c file because it's the only one that affect
 - Run mapTesting.bat and see the results
 
 # Planned fixes:
-- Long maps buff (reason: Avoid short compilation maps being broken, and also, the stream nerf is too harsh for some maps)
-- Short maps nerf (reason: Same as above)
-- FL big buff (reason: No one uses it)
-- An attempt to nerf jumps slightly (reason: helloisuck)
+- An attempt to nerf helloisuck (reason: helloisuck)
+- Adjust values for better pp calculations (reason: idk, it's funny)
 
 #
 If you have any suggestions or found any broken map, just DM me in discord ( E-girl Cansada#7777 )
