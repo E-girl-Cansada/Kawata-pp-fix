@@ -2199,39 +2199,52 @@ int pp_std(ezpp_t ez) {
       CSmulti = pow(((((-(ez->cs))/5.0f) + 6.2f)/5.0f), 3.5f); // ((-cs/5 + 6.2)/5)^3.5 Decreases the higher it gets
 
   }
-
-  // FL BUFF (THIS BUFF IS NOT APPLIABLE BECAUSE OF THE DUMB FL RULE, OTHERWISE WE WOULD SEE 20K PP PLAYS. FEEL FREE TO TEST IT BY YOURSELF THO)
   
-  /*
+  // LENGTH MULTIPLIER
+
+  float LENGTHmulti;
+
+  LENGTHmulti = 0.9f + (pow(ez->nobjects/1000, 1.3f)/pow(ez->nobjects, 0.8f))*50; // simple length multiplier
+ 
+  // FL BUFF (THIS BUFF IS NOT APPLIABLE BECAUSE OF THE DUMB FL RULE)
+  
   float FLmulti;
+
   if(ez->mods & MODS_RX){
 
     if(ez->mods & MODS_FL){
 
       FLmulti = 1.1f + pow((ez->nobjects/600.0f), 1.2f); // just a very simple buff based in obj count
-      final_multiplier *= FLmulti;
 
     }
 
   }
-  */ 
 
   /* total pp -------------------------------------------------------- */
   final_multiplier = 1.12f;
 
     if (ez->relax == 1){
-
+    
+    final_multiplier = 1.03f;
     final_multiplier *= CSmulti;
+    final_multiplier *= LENGTHmulti;
 
   }
+
+    if(ez->relax ==1 && ez->mods & MODS_FL){
+
+      final_multiplier *= FLmulti;
+
+    }
 
   if (ez->mods & MODS_NF) final_multiplier *= 0.90f;
   if (ez->mods & MODS_SO) final_multiplier *= 0.95f;
 
-  if(ez->relax == 1)
-  {
+  if(ez->relax == 1){
+
     diff = aim_speed_difference_factor(ez->aim_pp, ez->speed_pp);
-  
+    ez->speed_pp *= 100.5f;
+
     if(diff < 0.2f)
     {
       ez->speed_pp *= 0.1f;
