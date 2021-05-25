@@ -11,6 +11,7 @@ I don't know, I just edit the oppai.c file because it's the only one that affect
 # Planned fixes:
 - High CS big nerf (reason: Aim correction)
 - Low CS nerf (reason: Bad maps)
+
 Those 2 nerfs will result in maps that goes from 5-6CS | 4-5CS with CS changer | after mods getting more pp than the rest. This is good because aim correction makes high CS maps very easy and low CS maps are trash so whatever
 
 - Long map buff (reason: Avoid short compilation maps being broken, and also, the stream nerf is too harsh for some maps)
